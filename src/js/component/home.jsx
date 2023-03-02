@@ -6,39 +6,59 @@ import EspecialButton from "./EspecialButton.jsx";
 
 //create your first component
 const Home = () => {
-	//defining the Promisse!!!
-	var myPromise = new Promise(function(resolve, reject) {
-		setTimeout(function() {
-		   reject("I was resolved");
-		}, 3000);
-	  });
-	  
-	  //using the Promisse!!!
-	  myPromise.then((obj) => {
-		console.log("My Result: " + obj);
-	  }).catch((reason) => console.log("My Error: " + reason));
-	  
-	  //Printing what is a Promisse
-	  console.log(myPromise);
-	  console.log("hello!!!");
-	  
-	  //Function that will return a Promisse
-	  function CallingAnotherPromisse(){
-		return new Promise(function(resolve, reject) {
-			setTimeout(function() {
-			  resolve("Resolved using Await");
-			}, 300);
-		  });
+	
+	function promise1() {
+		return new Promise((resolve, reject) => {
+		  setTimeout(() => {
+			resolve("I am resolved as 1");
+		  }, 100);
+		});
 	  }
-	  //Creating asyncronous Function!!!
-	  async function MyFunction(){
-			console.log("Hello");
-			let data = await CallingAnotherPromisse();
-			console.log("Await Result: " + data);
+	  function promise2() {
+		return new Promise((resolve, reject) => {
+		  setTimeout(() => {
+			resolve("I am resolved as 2");
+		  }, 200);
+		});
 	  }
-	  MyFunction();
-	  console.log("Look at this crazy thing!!!");
+	  function promise3() {
+		return new Promise((resolve, reject) => {
+		  setTimeout(() => {
+			resolve("I am resolved as 3");
+		  }, 300);
+		});
+	  }
+	  async function handlingAllPromises() {
+		var first = await promise1();
+		var second = await promise2();
+		var third = await promise3();
+		
+		console.log(first);
+		console.log(second);
+		console.log(third);
+	  }
+	  handlingAllPromises();
+	  console.log('I can continue run my code even with all this promisse')
 	  
+	 
+	  function promiseRejected() {
+		return new Promise((resolve, reject) => {
+		  setTimeout(() => {
+			reject("I am the Promise Rejected");
+		  }, 300);
+		});
+	  }
+
+	  async function RunRejectPromise() {
+		try {
+			var first = await promiseRejected();
+			console.log(first);
+		} catch (error) {
+			console.log(error);
+		}
+		
+	  }
+	  RunRejectPromisse();
 
 	return (
 		<div className="text-center">
