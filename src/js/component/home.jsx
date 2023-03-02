@@ -6,25 +6,25 @@ import EspecialButton from "./EspecialButton.jsx";
 
 //create your first component
 const Home = () => {
-	
-	function runFirst(someFunction){
-		console.log("I want to run first");
-		someFunction();
-		runSecond();
-		console.log("I also want to run when runFirst runs");
+	function fetchingImages(){
+		console.log("Load them!");
+		fetch("https://play-lh.googleusercontent.com/1-hPxafOxdYpYZEOKzNIkSP43HXCNftVJVttoo4ucl7rsMASXW3Xr6GlXURCubE1tA=w3840-h2160-rw").then( (response) => {
+			if(response.ok){ 
+				console.log("Images Loaded!!");
+			} else {
+				console.log("Uh-oh something went wrong");
+			}
+		});
 	}
-	function runSecond(){
-		console.log("Where am I running?");
+	function userIsWaiting(){
+		console.log("I don't like waiting");
 	}
-	runFirst(aThirdOne);
-	
-	function aThirdOne(){
-		console.log("this is crazy");
-	}
+	fetchingImages();
+	userIsWaiting();
 
 	return (
 		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo! <EspecialButton title="Click Me!!!" handleSomething={runSecond}></EspecialButton>  <EspecialButton title="Another" handleSomething={aThirdOne}></EspecialButton> <EspecialButton title="Same Button" handleSomething={runSecond}></EspecialButton> </h1>
+			<h1 className="text-center mt-5">Hello Rigo!  </h1>
 			<p>
 				<img src={rigoImage} />
 			</p>
