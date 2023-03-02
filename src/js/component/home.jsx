@@ -6,21 +6,39 @@ import EspecialButton from "./EspecialButton.jsx";
 
 //create your first component
 const Home = () => {
-	function fetchingImages(){
-		console.log("Load them!");
-		fetch("https://play-lh.googleusercontent.com/1-hPxafOxdYpYZEOKzNIkSP43HXCNftVJVttoo4ucl7rsMASXW3Xr6GlXURCubE1tA=w3840-h2160-rw").then( (response) => {
-			if(response.ok){ 
-				console.log("Images Loaded!!");
-			} else {
-				console.log("Uh-oh something went wrong");
-			}
-		});
-	}
-	function userIsWaiting(){
-		console.log("I don't like waiting");
-	}
-	fetchingImages();
-	userIsWaiting();
+	//defining the Promisse!!!
+	var myPromise = new Promise(function(resolve, reject) {
+		setTimeout(function() {
+		   reject("I was resolved");
+		}, 3000);
+	  });
+	  
+	  //using the Promisse!!!
+	  myPromise.then((obj) => {
+		console.log("My Result: " + obj);
+	  }).catch((reason) => console.log("My Error: " + reason));
+	  
+	  //Printing what is a Promisse
+	  console.log(myPromise);
+	  console.log("hello!!!");
+	  
+	  //Function that will return a Promisse
+	  function CallingAnotherPromisse(){
+		return new Promise(function(resolve, reject) {
+			setTimeout(function() {
+			  resolve("Resolved using Await");
+			}, 300);
+		  });
+	  }
+	  //Creating asyncronous Function!!!
+	  async function MyFunction(){
+			console.log("Hello");
+			let data = await CallingAnotherPromisse();
+			console.log("Await Result: " + data);
+	  }
+	  MyFunction();
+	  console.log("Look at this crazy thing!!!");
+	  
 
 	return (
 		<div className="text-center">
