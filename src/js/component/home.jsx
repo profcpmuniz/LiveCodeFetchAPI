@@ -24,7 +24,7 @@ const Home = () => {
 
 	return (
 		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo! <EspecialButton handleSomething={runSecond}></EspecialButton> </h1>
+			<h1 className="text-center mt-5">Hello Rigo! <EspecialButton title="Click Me!!!" handleSomething={runSecond}></EspecialButton>  <EspecialButton title="Another" handleSomething={aThirdOne}></EspecialButton> <EspecialButton title="Same Button" handleSomething={runSecond}></EspecialButton> </h1>
 			<p>
 				<img src={rigoImage} />
 			</p>
